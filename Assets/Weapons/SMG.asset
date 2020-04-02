@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef7f9e4f22a2ac4b9bfc3697bab533c, type: 3}
+  m_Name: SMG
+  m_EditorClassIdentifier: 
+  damage: 1
+  weaponSprite: {fileID: 0}
+  projectile: {fileID: 0}
+  projectileSpeed: 10
+  isAutomatic: 0
+  fireRate: 0
