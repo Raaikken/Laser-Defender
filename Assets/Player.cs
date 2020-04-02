@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	// Variables
 	[SerializeField] float moveSpeed = 1f;
-	[SerializeField] Weapon weapon;
+	[SerializeField] Weapon weapon = null;
 
 	// Internal Variables
 	Coroutine firingCoroutine;
@@ -44,12 +44,15 @@ public class Player : MonoBehaviour {
 		if (Input.GetButtonDown("Fire1") && !weapon.GetIsAutomatic()) {
 			GameObject projectile = Instantiate(weapon.GetProjectile(), transform.GetChild(0).position, transform.GetChild(0).rotation * Quaternion.Euler(0f, 0f, -90f)) as GameObject;
 			projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * weapon.GetProjectileSpeed();
+			// if (!projectile.GetComponent<SpriteRenderer>().isVisible) {
+			// 	Destroy(projectile);
+			// }
 		} 
 		else if (Input.GetButtonDown("Fire1")) {
 			firingCoroutine = StartCoroutine(ContinuesShooting(weapon.GetFireRate()));
 		}
 
-		if (Input.GetButtonUp("Fire1")) {
+		if (Input.GetButtonUp("Fire1") && firingCoroutine != null) {
 			StopCoroutine(firingCoroutine);
 		}
 	}
