@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SMG
   m_EditorClassIdentifier: 
   damage: 1
-  weaponSprite: {fileID: 0}
-  projectile: {fileID: 0}
-  projectileSpeed: 10
-  isAutomatic: 0
-  fireRate: 0
+  weaponSprite: {fileID: 21300000, guid: bc8708038190ce847b8b572bbaf79803, type: 3}
+  projectile: {fileID: 132552351891681451, guid: efefbd69976708347b56e0128adfec43,
+    type: 3}
+  projectileSpeed: 12
+  isAutomatic: 1
+  fireRate: 0.15

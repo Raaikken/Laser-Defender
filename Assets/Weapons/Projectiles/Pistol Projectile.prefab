@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3321748375969080925}
   - component: {fileID: 114398367500451560}
   m_Layer: 0
-  m_Name: laserBlue02
+  m_Name: Pistol Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,3 +131,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bed293fa9b0c074bae66761b5d70247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 45c29cabda17fa2448850e6ec5ded634, type: 2}

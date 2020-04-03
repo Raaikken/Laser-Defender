@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
-	SceneLoader sceneLoader = null;
+	// Variables
 
 	// On first initialization
 	void Awake() {

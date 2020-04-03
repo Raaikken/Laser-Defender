@@ -5,14 +5,14 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Weapon")]
 public class Weapon : ScriptableObject {
-	[SerializeField] float damage = 1f;
+	[SerializeField] int damage = 1;
 	[SerializeField] Sprite weaponSprite = null;
 	[SerializeField] GameObject projectile = null;
 	[SerializeField] float projectileSpeed = 10f;
 	[SerializeField] bool isAutomatic = false;
 	[SerializeField] float fireRate = 0f;
 
-	public float GetDamage() {
+	public int GetDamage() {
 		return damage;
 	}
 

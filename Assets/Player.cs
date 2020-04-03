@@ -42,11 +42,7 @@ public class Player : MonoBehaviour {
 	// and weapon is automatic
 	void Shoot() {
 		if (Input.GetButtonDown("Fire1") && !weapon.GetIsAutomatic()) {
-			GameObject projectile = Instantiate(weapon.GetProjectile(), transform.GetChild(0).position, transform.GetChild(0).rotation * Quaternion.Euler(0f, 0f, -90f)) as GameObject;
-			projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * weapon.GetProjectileSpeed();
-			// if (!projectile.GetComponent<SpriteRenderer>().isVisible) {
-			// 	Destroy(projectile);
-			// }
+			InstantiateBullet();
 		} 
 		else if (Input.GetButtonDown("Fire1")) {
 			firingCoroutine = StartCoroutine(ContinuesShooting(weapon.GetFireRate()));
@@ -59,9 +55,14 @@ public class Player : MonoBehaviour {
 
 	IEnumerator ContinuesShooting(float fireRate) {
 		while(true) {
-			GameObject projectile = Instantiate(weapon.GetProjectile(), transform.GetChild(0).position, transform.GetChild(0).rotation * Quaternion.Euler(0f, 0f, -90f)) as GameObject;
-			projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * weapon.GetProjectileSpeed();
+			InstantiateBullet();
 			yield return new WaitForSeconds(fireRate);
 		}
+	}
+
+	void InstantiateBullet() {
+		GameObject projectile = Instantiate(weapon.GetProjectile(), transform.GetChild(0).position, transform.GetChild(0).rotation * Quaternion.Euler(0f, 0f, -90f)) as GameObject;
+		projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * weapon.GetProjectileSpeed();
+		projectile.GetComponent<Projectile>().SetShooter(gameObject);
 	}
 }
