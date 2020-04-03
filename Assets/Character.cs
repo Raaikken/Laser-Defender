@@ -22,10 +22,24 @@ public class Character : MonoBehaviour {
 
 	private void Start() {
 		currentHealth = maxHealth;
+		currentMoveSpeed = normalMoveSpeed;
+		transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weapon.GetWeaponSprite();
+		if(patrolRoute != null) {
+			for(int i = 0; i < patrolRoute.transform.childCount; i++) {
+				waypoints.Add(patrolRoute.transform.GetChild(i));
+			}
+		}
 	}
 
 	private void Update() {
-		
+		if(waypoints.Count != 0) {
+			Move(waypoints[nextWaypoint]);
+			LookAt(waypoints[nextWaypoint].position);
+		}
+		else {
+			Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+			LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		}
 	}
 	
 	// NPC Movement
@@ -51,52 +65,6 @@ public class Character : MonoBehaviour {
 		float AngleRad = Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x);
 		float AngleDeg = (180 / Mathf.PI) * AngleRad;
 		transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
-	}
-
-	void Shoot() {
-		RaycastHit2D hit = Physics2D.Raycast(transform.GetChild(0).position, (transform.right), 10f, 1 << 8);
-		if(hit.collider != null && hit.collider.tag == "Player" && !isFiring) {
-			firing = StartCoroutine(InstantiateBullet());
-		}
-	}
-
-	IEnumerator InstantiateBullet() {
-		isFiring = true;
-		GameObject projectile = Instantiate(weapon.GetProjectile(), transform.GetChild(0).position, transform.GetChild(0).rotation * Quaternion.Euler(0f, 0f, -90f)) as GameObject;
-		projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * weapon.GetProjectileSpeed();
-		projectile.GetComponent<Projectile>().SetShooter(gameObject);
-		yield return new WaitForSeconds(0.5f);
-		isFiring = false;
-	}
-	
-	// Shoot weapon
-	// Weapon is only fired once if not automatic
-	// Weapon will continuesly shoot as long as Fire1 button is held down
-	// and weapon is automatic
-	void Shoot() {
-		if (Input.GetButtonDown("Fire1") && !weapon.GetIsAutomatic()) {
-			InstantiateBullet();
-		} 
-		else if (Input.GetButtonDown("Fire1")) {
-			firingCoroutine = StartCoroutine(ContinuesShooting(weapon.GetFireRate()));
-		}
-
-		if (Input.GetButtonUp("Fire1") && firingCoroutine != null) {
-			StopCoroutine(firingCoroutine);
-		}
-	}
-
-	IEnumerator ContinuesShooting(float fireRate) {
-		while(true) {
-			InstantiateBullet();
-			yield return new WaitForSeconds(fireRate);
-		}
-	}
-
-	void InstantiateBullet() {
-		GameObject projectile = Instantiate(weapon.GetProjectile(), transform.GetChild(0).position, transform.GetChild(0).rotation * Quaternion.Euler(0f, 0f, -90f)) as GameObject;
-		projectile.GetComponent<Rigidbody2D>().velocity = projectile.transform.up * weapon.GetProjectileSpeed();
-		projectile.GetComponent<Projectile>().SetShooter(gameObject);
 	}
 
 	public void TakeDamage(int damamge) {

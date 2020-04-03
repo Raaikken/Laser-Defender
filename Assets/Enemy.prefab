@@ -98,7 +98,7 @@ MonoBehaviour:
   normalMoveSpeed: 2
   alertedSpeedMultiplier: 2.5
   patrolRoute: {fileID: 0}
-  weapon: {fileID: 11400000, guid: d7dcfcd5a9ae645498a798d93e9ef751, type: 2}
+  weapon: {fileID: 0}
 --- !u!61 &1435952812
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +138,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 1
+  normalMoveSpeed: 2
+  alertedSpeedMultiplier: 2.5
+  weapon: {fileID: 11400000, guid: d7dcfcd5a9ae645498a798d93e9ef751, type: 2}
+  patrolRoute: {fileID: 0}
 --- !u!1 &9075867072695826803
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3890669437918574504}
   - component: {fileID: 1991565523850980652}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

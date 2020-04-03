@@ -9,10 +9,7 @@ public class Player : MonoBehaviour {
 
 	// Internal Variables
 	Coroutine firingCoroutine;
-
-	// Debug
-
-
+	
 	// Start is called before the first frame update
 	void Start() {
 		transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weapon.GetWeaponSprite();
@@ -20,20 +17,7 @@ public class Player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		Move(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-		LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		Shoot();
-	}
-
-	void Move(float moveX, float moveY) {
-		Vector2 movementVector = new Vector2(moveX, moveY);
-		transform.position = (Vector2)transform.position + movementVector.normalized * moveSpeed * Time.deltaTime;
-	}
-
-	void LookAt(Vector2 target) {
-		float AngleRad = Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x);
-		float AngleDeg = (180 / Mathf.PI) * AngleRad;
-		transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
 	}
 
 	// Shoot weapon

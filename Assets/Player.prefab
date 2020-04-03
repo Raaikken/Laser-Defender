@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5942265858374207894}
   - component: {fileID: 502229984}
   - component: {fileID: 114087754589202400}
+  - component: {fileID: 502229981}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  weapon: {fileID: 11400000, guid: d7dcfcd5a9ae645498a798d93e9ef751, type: 2}
+  weapon: {fileID: 11400000, guid: 45c29cabda17fa2448850e6ec5ded634, type: 2}
 --- !u!61 &502229984
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136,7 +137,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 1
+  normalMoveSpeed: 5
+  alertedSpeedMultiplier: 5
+  weapon: {fileID: 0}
+  patrolRoute: {fileID: 0}
+--- !u!50 &502229981
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5942265858374207893}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5942265858466934508
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5942265858466934511}
   - component: {fileID: 5942265858466934510}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
