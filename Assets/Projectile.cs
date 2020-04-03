@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		if(other.gameObject != shooter) {
+		if(other.gameObject != shooter && other.gameObject.layer == 8) {
 			other.GetComponent<Character>().TakeDamage(weapon.GetDamage());
 			Destroy(gameObject);
 		}

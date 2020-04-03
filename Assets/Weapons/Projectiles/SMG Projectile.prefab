@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 50989684128668400}
   - component: {fileID: 3321748375969080925}
   - component: {fileID: 114398367500451560}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SMG Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,26 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour {
 	[Header("Character")]
-	[SerializeField] int maxHealth = 10;
-	int currentHealth = 1;
+	[SerializeField] float maxHealth = 10;
+	float currentHealth = 1;
 	[SerializeField] float normalMoveSpeed = 5f;
 	float currentMoveSpeed = 1f;
 	[SerializeField] float alertedSpeedMultiplier = 5f;
-	[SerializeField] Weapon weapon = null;
 
 	[Header("Pathing")]
 	[SerializeField] GameObject patrolRoute = null;
 	List<Transform> waypoints = new List<Transform>();
 	int nextWaypoint = 0;
 
+	[Header("Weapon")]
+	[SerializeField] Weapon weapon = null;
+	[SerializeField] int maxAmmoPistol = 5;
+	[SerializeField] int maxAmmoSilenced = 5;
+	[SerializeField] int maxAmmoSMG = 5;
+	int currentAmmoPistol = 1;
+	int currentAmmoSilenced = 1;
+	int currentAmmoSMG = 1;
+
+	[Header("UI Elements")]
+	[SerializeField] Slider healthBar;
+
 	bool isAlerted = false;
 	bool isFiring = false;
 	Coroutine firing;
 
 	private void Start() {
+		if(healthBar != null) {
+			healthBar.value = healtPercentage();
+		}
 		currentHealth = maxHealth;
 		currentMoveSpeed = normalMoveSpeed;
 		transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weapon.GetWeaponSprite();
@@ -32,7 +47,10 @@ public class Character : MonoBehaviour {
 	}
 
 	private void Update() {
-		if(waypoints.Count != 0) {
+		if(healthBar != null) {
+			healthBar.value = healtPercentage();
+		}
+		if(transform.tag != "Player") {
 			Move(waypoints[nextWaypoint]);
 			LookAt(waypoints[nextWaypoint].position);
 		}
@@ -72,5 +90,9 @@ public class Character : MonoBehaviour {
 		if(currentHealth <= 0) {
 			Destroy(gameObject);
 		}
+	}
+
+	float healtPercentage() {
+		return currentHealth / maxHealth;
 	}
 }
